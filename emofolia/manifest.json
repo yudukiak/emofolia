@@ -1,0 +1,17 @@
+{
+  "name": "emofolia",
+  "description": "エモクロア から ココフォリア で使えるJSONを出力する拡張",
+  "author": "@akasaka",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "icons": {
+    "64": "icons/64.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://emoklore.charasheet.jp/*", "https://emoklore.charasheet.jp/*"],
+      "js": ["src/script.js", "sweetalert2/sweetalert2.min.js"],
+      "css": ["sweetalert2/minimal.css"]
+    }
+  ]
+}
