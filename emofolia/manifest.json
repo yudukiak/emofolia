@@ -2,7 +2,7 @@
   "name": "emofolia",
   "description": "エモクロア から ココフォリア で使えるJSONを出力する拡張",
   "author": "@akasaka",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "icons": {
     "64": "icons/64.png"
