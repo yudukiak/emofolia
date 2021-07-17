@@ -19,12 +19,12 @@ window.onload = _ => {
   })
   const buttonClick = _ => {
     const inputOptions = {
-      'initiative': '通常',
-      'speed': '地上',
-      'dive': '空中・水中',
-      'debate': '議論',
-      'money': 'マネーゲーム',
-      'live': 'ライブ'
+      'initiative': '（身体のみ）通常',
+      'speed': '（身体＋スピード）地上',
+      'dive': '（身体＋ダイブ）空中・水中',
+      'debate': '（知力＋ディベート）議論',
+      'money': '（社会）マネーゲーム',
+      'live': '（魅力）ライブ'
     }
     Swal.fire({
       input: 'select',
@@ -130,8 +130,8 @@ window.onload = _ => {
       'speed': speed,
       'dive': dive,
       'debate': debate,
-      'money': debate,
-      'live': debate
+      'money': money,
+      'live': live
     }
     return initiatives
   }
