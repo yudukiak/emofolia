@@ -174,6 +174,16 @@ window.onload = _ => {
     return text
   }
   /**
+   * メモ（PC読み方、PL記入箇所、表、裏、ルーツ）を返す
+   * @return {String}
+   */
+  const getColor = _ => {
+    const selector = '#app > div > main > div > div > div > div.row > div > div > div > div'
+    const color = document.querySelector(selector).style.backgroundColor
+    return color
+
+  }
+  /**
    * 共鳴値を返す
    * @return {Number}
    */
@@ -209,6 +219,7 @@ window.onload = _ => {
       'data': {
         'name': getName(),
         'memo': getMemo(),
+        'color': getColor(),
         'initiative': initiative,
         'externalUrl': location.href,
         'commands': commands,
