@@ -67,11 +67,11 @@ window.onload = _ => {
    */
   const getStatus = _ => {
     let status = []
-    const selectorStatus = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.v-card.v-sheet.theme--light > div > div.mt-4.col-sm-12.col-md-7.col-lg-7.col-12 > div.ml-0.ma-3.v-card.v-sheet.theme--light.elevation-1 > div > div > table > tbody > tr > td'
-    const elementsStatus = document.querySelectorAll(selectorStatus)
-    for (let i = 0, n = elementsStatus.length; i < n; i++) {
-      const element = elementsStatus[i]
-      const label = element.textContent
+    const selector = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(2) > div > table > tbody > tr'
+    const elements = document.querySelectorAll(selector)
+    for (let i = 0, n = elements.length; i < n; i++) {
+      const element = elements[i]
+      const label = element.querySelector('td > div > span').textContent
       status.push(Number(label))
     }
     return status
@@ -84,15 +84,14 @@ window.onload = _ => {
    */
   const getSkills = _ => {
     let skills = []
-    const selector = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.row > div.col-sm-12.col-md-8.col-lg-8.col-12 > div > div > div > div.v-expansion-panel.pt-1.v-expansion-panel--active.v-item--active > div > div > div.row > div > div > table > tbody > tr'
+    const selector = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.v-data-table.compact.mt-4.theme--light > div > table > tbody > tr'
     const elements = document.querySelectorAll(selector)
     for (let i = 0, n = elements.length; i < n; i++) {
       const element = elements[i]
-      const label = element.querySelector('td.pa-1.pl-5.text-h6 > div').textContent
-      const level2 = element.querySelector('td:nth-child(2) > div > button:nth-child(2)').className
-      const level3 = element.querySelector('td:nth-child(2) > div > button:nth-child(3)').className
-      const level = (/grey/.test(level2)) ? 1 : (/grey/.test(level3)) ? 2 : 3
-      const value = element.querySelector('td:nth-child(4) > div > div > div > div > input').value
+      if ( !element.querySelector('td:nth-child(3) > div > span.outlinebox') ) continue
+      const label = element.querySelector('td:nth-child(1)').textContent.replace(/＊/, '')
+      const level = element.querySelector('td:nth-child(2) > div > span').textContent.replace(/Lv./, '')
+      const value = element.querySelector('td:nth-child(3) > div > span.outlinebox').textContent
       const skill = [label, Number(level), Number(value)]
       skills.push(skill)
     }
@@ -152,7 +151,7 @@ window.onload = _ => {
    * @return {String}
    */
   const getName = _ => {
-    const selector = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.v-card.v-sheet.theme--light > div > div.mt-4.col-sm-12.col-md-7.col-lg-7.col-12 > div.text-left.text-lg-h2.text-md-h3.text-h4.pl-3'
+    const selector = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.text-left.text-lg-h2.text-md-h3.text-h4'
     const nameElement = document.querySelector(selector)
     nameElement.querySelector('.text-h4').innerHTML = ''
     const text = nameElement.textContent
@@ -163,13 +162,13 @@ window.onload = _ => {
    * @return {String}
    */
   const getMemo = _ => {
-    const selectorKana = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.v-card.v-sheet.theme--light > div > div.mt-4.col-sm-12.col-md-7.col-lg-7.col-12 > div.text-left.text-h5.pl-2'
+    const selectorKana = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.text-left.text-h5'
     const kana = document.querySelector(selectorKana).textContent
-    const selectorFront = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.row > div.col-sm-12.col-md-4.col-lg-4.col-12 > div:nth-child(2) > div > div > div:nth-child(1) > div'
+    const selectorFront = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(4) > div > div > table > tbody > tr:nth-child(2) > td'
     const front = document.querySelector(selectorFront).textContent
-    const selectorBack = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.row > div.col-sm-12.col-md-4.col-lg-4.col-12 > div:nth-child(2) > div > div > div:nth-child(2) > div'
+    const selectorBack = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(4) > div > div > table > tbody > tr:nth-child(3) > td'
     const back = document.querySelector(selectorBack).textContent
-    const selectorRoots = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.row > div.col-sm-12.col-md-4.col-lg-4.col-12 > div:nth-child(2) > div > div > div:nth-child(3) > div'
+    const selectorRoots = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(4) > div > div > table > tbody > tr:nth-child(4) > td'
     const roots = document.querySelector(selectorRoots).textContent
     const text = `PC　${kana}\nPL　\n\n表　${front}\n裏　${back}\nル　${roots}`
     return text
@@ -178,20 +177,20 @@ window.onload = _ => {
    * メモ（PC読み方、PL記入箇所、表、裏、ルーツ）を返す
    * @return {String}
    */
-  const getColor = _ => {
-    const selector = '#app > div > main > div > div > div > div.row > div > div > div > div'
-    const color = document.querySelector(selector).style.backgroundColor
-    return color
-
-  }
+//  const getColor = _ => {
+//    const selector = '#app > div > main > div > div > div > div.row > div > div > div > div'
+//    const color = document.querySelector(selector).style.backgroundColor
+//    return color
+//  }
   /**
    * 共鳴値を返す
    * @return {Number}
    */
   const getResonance = _ => {
-    const selector = '#app > div.v-application--wrap > main > div > div > div > div.row > div > div > div > div > div > div > div.row > div.col-sm-12.col-md-4.col-lg-4.col-12 > div:nth-child(3) > div > div > div:nth-child(2) > div > div > div.v-input__slot > div > input'
-    const value = document.querySelector(selector).value
-    return value
+    const selector = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(5) > div > div > table > tbody > tr > td'
+    const text = document.querySelector(selector).textContent
+    const number = Number(text)
+    return number
   }
   /**
    * キャラクターオブジェクトを返す
@@ -220,7 +219,7 @@ window.onload = _ => {
       'data': {
         'name': getName(),
         'memo': getMemo(),
-        'color': getColor(),
+//        'color': getColor(),
         'initiative': initiative,
         'externalUrl': location.href,
         'commands': commands,
