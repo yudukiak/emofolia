@@ -224,7 +224,6 @@ window.onload = _ => {
 //        'color': getColor(),
         'initiative': initiative,
         'externalUrl': location.href,
-        'commands': commands,
         'status': [{
             'label': 'HP',
             'value': hp,
@@ -240,7 +239,41 @@ window.onload = _ => {
             'value': getResonance(),
             'max': 10
           }
-        ]
+        ],
+        'params': [{
+            'label': '身体',
+            'value': String(status[0])
+          },
+          {
+            'label': '器用',
+            'value': String(status[1])
+          },
+          {
+            'label': '精神',
+            'value': String(status[2])
+          },
+          {
+            'label': '五感',
+            'value': String(status[3])
+          },
+          {
+            'label': '知力',
+            'value': String(status[4])
+          },
+          {
+            'label': '魅力',
+            'value': String(status[5])
+          },
+          {
+            'label': '社会',
+            'value': String(status[6])
+          },
+          {
+            'label': '運勢',
+            'value': String(status[7])
+          }
+        ],
+        'commands': commands
       }
     }
     return object
