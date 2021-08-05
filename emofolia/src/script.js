@@ -1,5 +1,6 @@
 window.onload = _ => {
   const target = document.getElementById('__nuxt')
+  if (target == null) return
   const observer = new MutationObserver(records => {
     const ccfolia = document.getElementById('ccfolia')
     if (ccfolia && !/view/.test(location.href)) ccfolia.remove()
