@@ -3,7 +3,7 @@
   "description": "エモクロア から ココフォリア で使えるJSONを出力する拡張",
   "author": "@akasaka",
   "version": "1.2.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "icons": {
     "64": "icons/64.png"
   },
