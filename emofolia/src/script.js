@@ -89,26 +89,38 @@ window.onload = _ => {
     for (let i = 0, n = elements.length; i < n; i++) {
       const element = elements[i]
       if ( !element.querySelector('td:nth-child(3) > div > span.outlinebox') ) continue
-      const label = element.querySelector('td:nth-child(1)').textContent.replace(/＊/, '')
+      //const label = element.querySelector('td:nth-child(1)').textContent.replace(/＊/, '')
+      const labelElement = element.querySelector('td:nth-child(1)')
+      const labelSpanElement = element.querySelector('td:nth-child(1) > span')
+      let  label = ''
+      if (labelSpanElement == null) {
+        const labelName = labelElement.textContent
+        label = labelName
+      } else {
+        const labelCustom = labelSpanElement.textContent
+        labelElement.querySelector('span').innerHTML = ''
+        const labelName = labelElement.textContent
+        label = `${labelName}（${labelCustom}）`
+      }
       const level = element.querySelector('td:nth-child(2) > div > span').textContent.replace(/Lv./, '')
       const value = element.querySelector('td:nth-child(3) > div > span.outlinebox').textContent
       const skill = [label, Number(level), Number(value)]
       skills.push(skill)
     }
     const status = getStatus()
-    skills.push(['＊調査', 1, status[1]])
-    skills.push(['＊知覚', 1, status[3]])
-    skills.push(['＊交渉', 1, status[5]])
-    skills.push(['＊知識', 1, status[4]])
-    skills.push(['＊ニュース', 1, status[6]])
-    skills.push(['＊運動', 1, status[0]])
-    skills.push(['＊格闘', 1, status[0]])
-    skills.push(['＊投擲', 1, status[1]])
-    skills.push(['＊生存', 1, status[0]])
-    skills.push(['＊自我', 1, status[2]])
-    skills.push(['＊手当て', 1, status[4]])
-    skills.push(['＊細工', 1, status[1]])
-    skills.push(['＊幸運', 1, status[7]])
+    //skills.push(['＊調査', 1, status[1]])
+    //skills.push(['＊知覚', 1, status[3]])
+    //skills.push(['＊交渉', 1, status[5]])
+    //skills.push(['＊知識', 1, status[4]])
+    //skills.push(['＊ニュース', 1, status[6]])
+    //skills.push(['＊運動', 1, status[0]])
+    //skills.push(['＊格闘', 1, status[0]])
+    //skills.push(['＊投擲', 1, status[1]])
+    //skills.push(['＊生存', 1, status[0]])
+    //skills.push(['＊自我', 1, status[2]])
+    //skills.push(['＊手当て', 1, status[4]])
+    //skills.push(['＊細工', 1, status[1]])
+    //skills.push(['＊幸運', 1, status[7]])
     return skills
   }
   /**
