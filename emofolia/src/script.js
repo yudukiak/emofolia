@@ -1,23 +1,18 @@
 window.onload = _ => {
   const target = document.getElementById('__nuxt')
   if (target == null) return
-  //const observer = new MutationObserver(records => {
-    const ccfolia = document.getElementById('ccfolia')
-    if (ccfolia && !/view/.test(location.href)) ccfolia.remove()
-    if (ccfolia || !/view/.test(location.href)) return
-    const ccfoliaButton = document.createElement('button')
-    ccfoliaButton.id = 'ccfolia'
-    ccfoliaButton.className = 'ml-2 px-2 my-1 v-btn theme--light elevation-0 v-size--small error'
-    const ccfoliaSpan = document.createElement('span')
-    ccfoliaSpan.className = 'v-btn__content'
-    ccfoliaSpan.textContent = 'ココフォリア駒出力'
-    ccfoliaButton.appendChild(ccfoliaSpan)
-    document.querySelector('#app > div.v-application--wrap > header > div > div').appendChild(ccfoliaButton)
-    ccfoliaButton.addEventListener('click', _ => buttonClick())
-  //})
-  //observer.observe(target, {
-  //  childList: true
-  //})
+  const ccfolia = document.getElementById('ccfolia')
+  if (ccfolia && !/view/.test(location.href)) ccfolia.remove()
+  if (ccfolia || !/view/.test(location.href)) return
+  const ccfoliaButton = document.createElement('button')
+  ccfoliaButton.id = 'ccfolia'
+  ccfoliaButton.className = 'ml-2 px-2 my-1 v-btn theme--light elevation-0 v-size--small error'
+  const ccfoliaSpan = document.createElement('span')
+  ccfoliaSpan.className = 'v-btn__content'
+  ccfoliaSpan.textContent = 'ココフォリア駒出力'
+  ccfoliaButton.appendChild(ccfoliaSpan)
+  document.querySelector('#app > div.v-application--wrap > header > div > div').appendChild(ccfoliaButton)
+  ccfoliaButton.addEventListener('click', _ => buttonClick())
   const buttonClick = _ => {
     const inputOptions = {
       'initiative': '（身体のみ）通常',
@@ -67,7 +62,7 @@ window.onload = _ => {
    */
   const getStatus = _ => {
     let status = []
-    const selector = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(2) > div > table > tbody > tr'
+    const selector = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div:nth-child(5) > div > table > tbody > tr'
     const elements = document.querySelectorAll(selector)
     for (let i = 0, n = elements.length; i < n; i++) {
       const element = elements[i]
@@ -84,7 +79,7 @@ window.onload = _ => {
    */
   const getSkills = _ => {
     let skills = []
-    const selector = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.v-data-table.compact.mt-4.theme--light > div > table > tbody > tr'
+    const selector = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.v-data-table.compact.section-margin-top.theme--light > div > table > tbody > tr'
     const elements = document.querySelectorAll(selector)
     for (let i = 0, n = elements.length; i < n; i++) {
       const element = elements[i]
@@ -165,7 +160,6 @@ window.onload = _ => {
   const getName = _ => {
     const selector = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.text-left.text-lg-h2.text-md-h3.text-h4'
     const nameElement = document.querySelector(selector)
-    nameElement.querySelector('.text-h4').innerHTML = ''
     const text = nameElement.textContent
     return text
   }
@@ -176,11 +170,11 @@ window.onload = _ => {
   const getMemo = _ => {
     const selectorKana = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.text-left.text-h5'
     const kana = document.querySelector(selectorKana).textContent
-    const selectorFront = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(4) > div > div > table > tbody > tr:nth-child(2) > td'
+    const selectorFront = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(2) > td'
     const front = document.querySelector(selectorFront).textContent
-    const selectorBack = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(4) > div > div > table > tbody > tr:nth-child(3) > td'
+    const selectorBack = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(3) > td'
     const back = document.querySelector(selectorBack).textContent
-    const selectorRoots = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(4) > div > div > table > tbody > tr:nth-child(4) > td'
+    const selectorRoots = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(4) > td'
     const roots = document.querySelector(selectorRoots).textContent
     const text = `PC　${kana}\nPL　\n\n表　${front}\n裏　${back}\nル　${roots}`
     return text
@@ -199,7 +193,7 @@ window.onload = _ => {
    * @return {Number}
    */
   const getResonance = _ => {
-    const selector = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div:nth-child(5) > div > div > table > tbody > tr > td'
+    const selector = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(1) > td'
     const text = document.querySelector(selector).textContent
     const number = Number(text)
     return number
