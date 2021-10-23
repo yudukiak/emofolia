@@ -1,7 +1,7 @@
 window.onload = _ => {
   const target = document.getElementById('__nuxt')
   if (target == null) return
-  const observer = new MutationObserver(records => {
+  //const observer = new MutationObserver(records => {
     const ccfolia = document.getElementById('ccfolia')
     if (ccfolia && !/view/.test(location.href)) ccfolia.remove()
     if (ccfolia || !/view/.test(location.href)) return
@@ -14,10 +14,10 @@ window.onload = _ => {
     ccfoliaButton.appendChild(ccfoliaSpan)
     document.querySelector('#app > div.v-application--wrap > header > div > div').appendChild(ccfoliaButton)
     ccfoliaButton.addEventListener('click', _ => buttonClick())
-  })
-  observer.observe(target, {
-    childList: true
-  })
+  //})
+  //observer.observe(target, {
+  //  childList: true
+  //})
   const buttonClick = _ => {
     const inputOptions = {
       'initiative': '（身体のみ）通常',
