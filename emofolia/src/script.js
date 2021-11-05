@@ -1,18 +1,25 @@
 window.onload = _ => {
-  const target = document.getElementById('__nuxt')
+  const target = document.body
   if (target == null) return
-  const ccfolia = document.getElementById('ccfolia')
-  if (ccfolia && !/view/.test(location.href)) ccfolia.remove()
-  if (ccfolia || !/view/.test(location.href)) return
-  const ccfoliaButton = document.createElement('button')
-  ccfoliaButton.id = 'ccfolia'
-  ccfoliaButton.className = 'ml-2 px-2 my-1 v-btn theme--light elevation-0 v-size--small error'
-  const ccfoliaSpan = document.createElement('span')
-  ccfoliaSpan.className = 'v-btn__content'
-  ccfoliaSpan.textContent = 'ココフォリア駒出力'
-  ccfoliaButton.appendChild(ccfoliaSpan)
-  document.querySelector('#app > div.v-application--wrap > header > div > div').appendChild(ccfoliaButton)
-  ccfoliaButton.addEventListener('click', _ => buttonClick())
+  const observer = new MutationObserver(records => {
+    const ccfolia = document.getElementById('ccfolia')
+    if (ccfolia && !/view/.test(location.href)) ccfolia.remove()
+    if (ccfolia || !/view/.test(location.href)) return
+    const ccfoliaButton = document.createElement('button')
+    ccfoliaButton.id = 'ccfolia'
+    ccfoliaButton.className = 'ml-2 px-2 my-1 v-btn theme--light elevation-0 v-size--small error'
+    const ccfoliaSpan = document.createElement('span')
+    ccfoliaSpan.className = 'v-btn__content'
+    ccfoliaSpan.textContent = 'ココフォリア駒出力'
+    ccfoliaButton.appendChild(ccfoliaSpan)
+    document.querySelector('#app > div.v-application--wrap > header > div > div').appendChild(ccfoliaButton)
+    ccfoliaButton.addEventListener('click', _ => buttonClick())
+  })
+  observer.observe(target, {
+     characterData: true,
+     childList: true,
+     subtree: true
+  })
   const buttonClick = _ => {
     const inputOptions = {
       'initiative': '（身体のみ）通常',
