@@ -62,6 +62,16 @@ window.onload = _ => {
     })
   }
   /**
+   * テキストを返す
+   * @return {String}
+   */
+  const getText = (pc, sp) => {
+    const pcElm = document.querySelector(pc)
+    const spElm = document.querySelector(sp)
+    if (pcElm) return pcElm.textContent
+    return spElm.textContent
+  }
+  /**
    * 能力値を返す
    * [身体, 器用, 精神, 五感, 知力, 魅力, 社会, 運勢]
    * [Number, Number, Number, Number, Number, Number, Number, Number]
@@ -69,8 +79,11 @@ window.onload = _ => {
    */
   const getStatus = _ => {
     let status = []
-    const selector = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div:nth-child(5) > div > table > tbody > tr'
-    const elements = document.querySelectorAll(selector)
+    const selectorPc = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div:nth-child(5) > div > table > tbody > tr'
+    const selectorSp = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div:nth-child(6) > div > table > tbody > tr'
+    const elementsPc = document.querySelectorAll(selectorPc)
+    const elementsSp = document.querySelectorAll(selectorSp)
+    const elements = (elementsPc.length) ? elementsPc : elementsSp
     for (let i = 0, n = elements.length; i < n; i++) {
       const element = elements[i]
       const label = element.querySelector('td > div > span').textContent
@@ -100,7 +113,7 @@ window.onload = _ => {
         label = labelName
       } else {
         const labelCustom = labelSpanElement.textContent
-        labelElement.querySelector('span').innerHTML = ''
+        //labelElement.querySelector('span').innerHTML = ''
         const labelName = labelElement.textContent
         label = `${labelName}（${labelCustom}）`
       }
@@ -177,12 +190,15 @@ window.onload = _ => {
   const getMemo = _ => {
     const selectorKana = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.text-left.text-h5'
     const kana = document.querySelector(selectorKana).textContent
-    const selectorFront = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(2) > td'
-    const front = document.querySelector(selectorFront).textContent
-    const selectorBack = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(3) > td'
-    const back = document.querySelector(selectorBack).textContent
-    const selectorRoots = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(4) > td'
-    const roots = document.querySelector(selectorRoots).textContent
+    const selectorFrontPc = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(2) > td'
+    const selectorFrontSp = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.wrapper.mt-1 > div > div > table > tbody > tr:nth-child(2) > td'
+    const front = getText(selectorFrontPc, selectorFrontSp)
+    const selectorBackPc = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(3) > td'
+    const selectorBackSp = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.wrapper.mt-1 > div > div > table > tbody > tr:nth-child(3) > td'
+    const back = getText(selectorBackPc, selectorBackSp)
+    const selectorRootsPc = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(4) > td'
+    const selectorRootsSp = '#app > div.v-application--wrap > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.wrapper.mt-1 > div > div > table > tbody > tr:nth-child(4) > td'
+    const roots = getText(selectorRootsPc, selectorRootsSp)
     const text = `PC　${kana}\nPL　\n\n表　${front}\n裏　${back}\nル　${roots}`
     return text
   }
@@ -200,8 +216,9 @@ window.onload = _ => {
    * @return {Number}
    */
   const getResonance = _ => {
-    const selector = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(1) > td'
-    const text = document.querySelector(selector).textContent
+    const selectorPc = '#app > div > main > div > div > div > div > div.row > div > div > div > div.mt-4.col-sm-12.col-md-6.col-lg-6.col-12 > div.wrapper.mt-1.section-margin-top > div > div > table > tbody > tr:nth-child(1) > td'
+    const selectorSp = '#app > div > main > div > div > div > div > div.row > div > div > div > div:nth-child(1) > div.wrapper.mt-1 > div > div > table > tbody > tr:nth-child(1) > td'
+    const text = getText(selectorPc, selectorSp)
     const number = Number(text)
     return number
   }
