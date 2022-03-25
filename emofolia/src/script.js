@@ -113,8 +113,9 @@ window.onload = _ => {
         label = labelName
       } else {
         const labelCustom = labelSpanElement.textContent
-        //labelElement.querySelector('span').innerHTML = ''
-        const labelName = labelElement.textContent
+        const labelElementClone = labelElement.cloneNode(true)
+        labelElementClone.querySelector('span').innerHTML = ''
+        const labelName = labelElementClone.textContent
         label = `${labelName}（${labelCustom}）`
       }
       const level = element.querySelector('td:nth-child(2) > div > span').textContent.replace(/Lv./, '')
