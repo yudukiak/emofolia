@@ -234,9 +234,9 @@ window.onload = _ => {
     const mp = status[2] + status[4]
     const skills = getSkills() // [['技能名', レベル, 判定値]]
     const commands = (() => {
-      let cmd = '{共鳴}DM<= 〈∞共鳴〉'
-      cmd += '\n({共鳴}+1)DM<= 共鳴判定（ルーツ属性一致）'
-      cmd += '\n({共鳴}*2)DM<= 共鳴判定（完全一致）'
+      let cmd = '{共鳴}DM<={強度} 〈∞共鳴〉'
+      cmd += '\n({共鳴}+1)DM<={強度} 共鳴判定（ルーツ属性一致）'
+      cmd += '\n({共鳴}*2)DM<={強度} 共鳴判定（完全一致）'
       for (let i = 0, n = skills.length; i < n; i++) {
         const a = skills[i][0]
         const b = skills[i][1]
