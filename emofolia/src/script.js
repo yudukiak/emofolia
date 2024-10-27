@@ -7,12 +7,9 @@ window.onload = _ => {
     if (ccfolia || !/view/.test(location.href)) return
     const ccfoliaButton = document.createElement('button')
     ccfoliaButton.id = 'ccfolia'
-    ccfoliaButton.className = 'ml-2 px-2 my-1 v-btn theme--light elevation-0 v-size--small error'
-    const ccfoliaSpan = document.createElement('span')
-    ccfoliaSpan.className = 'v-btn__content'
-    ccfoliaSpan.textContent = 'ココフォリア駒出力'
-    ccfoliaButton.appendChild(ccfoliaSpan)
-    document.querySelector('#app > div.v-application--wrap > header > div > div').appendChild(ccfoliaButton)
+    ccfoliaButton.className = 'ml-3 v-btn theme--light elevation-0 v-size--default  error'
+    ccfoliaButton.innerHTML = '<span class="v-btn__content">ココフォリア駒出力</span>'
+    document.querySelector('#app > div.v-application--wrap > header > div > div').after(ccfoliaButton)
     ccfoliaButton.addEventListener('click', _ => buttonClick())
   })
   observer.observe(target, {
