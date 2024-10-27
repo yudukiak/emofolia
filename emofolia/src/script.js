@@ -58,6 +58,29 @@ window.onload = _ => {
       }
     })
   }
+  const setImageButton = _ => {
+    const div = document.createElement('div')
+    div.id = 'image_button'
+    div.style.position = 'absolute'
+    div.style.top = '0'
+    div.innerHTML = '<a target="_blank"><button class="v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default">画像を表示</button></a>'
+    document.querySelector('.v-window__container').appendChild(div)
+  }
+  const setImageLink = _ => {
+    const imageLink = document.querySelector('#image_button a')
+    imageLink.removeAttribute('href')
+    window.setTimeout(_ => {
+      const elm = document.querySelector('.v-window-item:not([style="display: none;"]) .v-image__image')
+      if (elm == null) return window.setTimeout(_ => setImageLink(), 100)
+      const backgroundImage = elm.style.backgroundImage
+      if (backgroundImage == '') return window.setTimeout(_ => setImageLink(), 100)
+      const backgroundImageURL = backgroundImage.match(/url\("(.+)"\)/)
+      imageLink.href = backgroundImageURL[1]
+    }, 500)
+  }
+  setImageButton()
+  setImageLink()
+  document.querySelectorAll('.v-window__prev, .v-window__next').forEach(buttonElm => buttonElm.addEventListener('click', _ => setImageLink()))
   /**
    * テキストを返す
    * @return {String}
